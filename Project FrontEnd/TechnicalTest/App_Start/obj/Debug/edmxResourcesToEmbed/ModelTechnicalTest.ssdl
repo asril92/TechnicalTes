@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TechnicalTesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ms_storage_location">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="location_name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ms_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="bigint" Nullable="false" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="20" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="is_active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tr_bpkb">
+    <Key>
+      <PropertyRef Name="agreement_number" />
+    </Key>
+    <Property Name="agreement_number" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="bpkb_no" Type="nvarchar" MaxLength="100" />
+    <Property Name="branch_id" Type="nvarchar" MaxLength="10" />
+    <Property Name="bpkb_date" Type="datetime" />
+    <Property Name="faktur_no" Type="nvarchar" MaxLength="100" />
+    <Property Name="faktur_date" Type="datetime" />
+    <Property Name="location_id" Type="nvarchar" MaxLength="10" />
+    <Property Name="police_no" Type="nvarchar" MaxLength="20" />
+    <Property Name="bpkb_date_in" Type="datetime" />
+    <Property Name="created_by" Type="nvarchar" MaxLength="20" />
+    <Property Name="created_on" Type="datetime" />
+    <Property Name="last_update_by" Type="nvarchar" MaxLength="20" />
+    <Property Name="last_update_on" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__tr_bpkb__locatio__145C0A3F">
+    <End Role="ms_storage_location" Type="Self.ms_storage_location" Multiplicity="0..1" />
+    <End Role="tr_bpkb" Type="Self.tr_bpkb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ms_storage_location">
+        <PropertyRef Name="location_id" />
+      </Principal>
+      <Dependent Role="tr_bpkb">
+        <PropertyRef Name="location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TechnicalTesModelStoreContainer">
+    <EntitySet Name="ms_storage_location" EntityType="Self.ms_storage_location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ms_user" EntityType="Self.ms_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tr_bpkb" EntityType="Self.tr_bpkb" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tr_bpkb__locatio__145C0A3F" Association="Self.FK__tr_bpkb__locatio__145C0A3F">
+      <End Role="ms_storage_location" EntitySet="ms_storage_location" />
+      <End Role="tr_bpkb" EntitySet="tr_bpkb" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

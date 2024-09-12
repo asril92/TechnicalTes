@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TechnicalTesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ms_storage_location">
+    <Key>
+      <PropertyRef Name="location_id" />
+    </Key>
+    <Property Name="location_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="location_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tr_bpkb" Relationship="Self.FK__tr_bpkb__locatio__145C0A3F" FromRole="ms_storage_location" ToRole="tr_bpkb" />
+  </EntityType>
+  <EntityType Name="ms_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int64" Nullable="false" />
+    <Property Name="user_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="is_active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tr_bpkb">
+    <Key>
+      <PropertyRef Name="agreement_number" />
+    </Key>
+    <Property Name="agreement_number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="bpkb_no" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="branch_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="bpkb_date" Type="DateTime" Precision="3" />
+    <Property Name="faktur_no" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="faktur_date" Type="DateTime" Precision="3" />
+    <Property Name="location_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="police_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="bpkb_date_in" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="created_on" Type="DateTime" Precision="3" />
+    <Property Name="last_update_by" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="last_update_on" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ms_storage_location" Relationship="Self.FK__tr_bpkb__locatio__145C0A3F" FromRole="tr_bpkb" ToRole="ms_storage_location" />
+  </EntityType>
+  <Association Name="FK__tr_bpkb__locatio__145C0A3F">
+    <End Role="ms_storage_location" Type="Self.ms_storage_location" Multiplicity="0..1" />
+    <End Role="tr_bpkb" Type="Self.tr_bpkb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ms_storage_location">
+        <PropertyRef Name="location_id" />
+      </Principal>
+      <Dependent Role="tr_bpkb">
+        <PropertyRef Name="location_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TechnicalTesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ms_storage_location" EntityType="Self.ms_storage_location" />
+    <EntitySet Name="ms_user" EntityType="Self.ms_user" />
+    <EntitySet Name="tr_bpkb" EntityType="Self.tr_bpkb" />
+    <AssociationSet Name="FK__tr_bpkb__locatio__145C0A3F" Association="Self.FK__tr_bpkb__locatio__145C0A3F">
+      <End Role="ms_storage_location" EntitySet="ms_storage_location" />
+      <End Role="tr_bpkb" EntitySet="tr_bpkb" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

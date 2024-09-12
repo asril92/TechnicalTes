@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TechnicalTesModelStoreContainer" CdmEntityContainer="TechnicalTesEntities">
+    <EntitySetMapping Name="ms_storage_location">
+      <EntityTypeMapping TypeName="TechnicalTesModel.ms_storage_location">
+        <MappingFragment StoreEntitySet="ms_storage_location">
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="location_name" ColumnName="location_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ms_user">
+      <EntityTypeMapping TypeName="TechnicalTesModel.ms_user">
+        <MappingFragment StoreEntitySet="ms_user">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tr_bpkb">
+      <EntityTypeMapping TypeName="TechnicalTesModel.tr_bpkb">
+        <MappingFragment StoreEntitySet="tr_bpkb">
+          <ScalarProperty Name="agreement_number" ColumnName="agreement_number" />
+          <ScalarProperty Name="bpkb_no" ColumnName="bpkb_no" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="bpkb_date" ColumnName="bpkb_date" />
+          <ScalarProperty Name="faktur_no" ColumnName="faktur_no" />
+          <ScalarProperty Name="faktur_date" ColumnName="faktur_date" />
+          <ScalarProperty Name="location_id" ColumnName="location_id" />
+          <ScalarProperty Name="police_no" ColumnName="police_no" />
+          <ScalarProperty Name="bpkb_date_in" ColumnName="bpkb_date_in" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="created_on" ColumnName="created_on" />
+          <ScalarProperty Name="last_update_by" ColumnName="last_update_by" />
+          <ScalarProperty Name="last_update_on" ColumnName="last_update_on" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

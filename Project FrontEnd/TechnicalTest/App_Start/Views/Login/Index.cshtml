@@ -1,0 +1,81 @@
+﻿@model TechnicalTest.Models.Login
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <style type="text/css">
+        body {
+            background: linear-gradient(to right, #182b3a, #20a4f3);
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            display: flex;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.5); /* Transparan white input background */
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .login-form button:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="mb-3 login-form" style="width:300px">
+            <h5 class="fw-bold text-white-50">Login</h5>
+           
+            <input class="form-control mt-4" type="text" placeholder="Username" style="max-width:100%;" name="Username"
+                   value="@Model.Username" autocomplete="off" />
+            <small>@Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-white" })</small>
+
+            <input class="form-control" type="password" placeholder="Password" style="max-width:100%" name="Password" />
+            <small>@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-white" })</small>
+
+            <button class="btn btn-primary mt-2" style="width:100%">Login</button>
+           
+        </div>
+
+        if (ViewBag.Message != null && ViewBag.Message != "")
+        {
+            <div class="alert alert-danger mt-1" style="width:300px;margin:auto">
+                @ViewBag.Message
+            </div>
+        }
+    }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+
