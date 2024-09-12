@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TechnicalTesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ms_storage_location">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="location_name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ms_user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="bigint" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tr_bpkb">
+          <Key>
+            <PropertyRef Name="agreement_number" />
+          </Key>
+          <Property Name="agreement_number" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="bpkb_no" Type="nvarchar" MaxLength="100" />
+          <Property Name="branch_id" Type="nvarchar" MaxLength="10" />
+          <Property Name="bpkb_date" Type="datetime" />
+          <Property Name="faktur_no" Type="nvarchar" MaxLength="100" />
+          <Property Name="faktur_date" Type="datetime" />
+          <Property Name="location_id" Type="nvarchar" MaxLength="10" />
+          <Property Name="police_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="bpkb_date_in" Type="datetime" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="20" />
+          <Property Name="created_on" Type="datetime" />
+          <Property Name="last_update_by" Type="nvarchar" MaxLength="20" />
+          <Property Name="last_update_on" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__tr_bpkb__locatio__145C0A3F">
+          <End Role="ms_storage_location" Type="Self.ms_storage_location" Multiplicity="0..1" />
+          <End Role="tr_bpkb" Type="Self.tr_bpkb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ms_storage_location">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="tr_bpkb">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TechnicalTesModelStoreContainer">
+          <EntitySet Name="ms_storage_location" EntityType="Self.ms_storage_location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ms_user" EntityType="Self.ms_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tr_bpkb" EntityType="Self.tr_bpkb" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tr_bpkb__locatio__145C0A3F" Association="Self.FK__tr_bpkb__locatio__145C0A3F">
+            <End Role="ms_storage_location" EntitySet="ms_storage_location" />
+            <End Role="tr_bpkb" EntitySet="tr_bpkb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TechnicalTesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ms_storage_location">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="location_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tr_bpkb" Relationship="Self.FK__tr_bpkb__locatio__145C0A3F" FromRole="ms_storage_location" ToRole="tr_bpkb" />
+        </EntityType>
+        <EntityType Name="ms_user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int64" Nullable="false" />
+          <Property Name="user_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tr_bpkb">
+          <Key>
+            <PropertyRef Name="agreement_number" />
+          </Key>
+          <Property Name="agreement_number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="bpkb_no" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="branch_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="bpkb_date" Type="DateTime" Precision="3" />
+          <Property Name="faktur_no" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="faktur_date" Type="DateTime" Precision="3" />
+          <Property Name="location_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="police_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bpkb_date_in" Type="DateTime" Precision="3" />
+          <Property Name="created_by" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="created_on" Type="DateTime" Precision="3" />
+          <Property Name="last_update_by" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="last_update_on" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ms_storage_location" Relationship="Self.FK__tr_bpkb__locatio__145C0A3F" FromRole="tr_bpkb" ToRole="ms_storage_location" />
+        </EntityType>
+        <Association Name="FK__tr_bpkb__locatio__145C0A3F">
+          <End Role="ms_storage_location" Type="Self.ms_storage_location" Multiplicity="0..1" />
+          <End Role="tr_bpkb" Type="Self.tr_bpkb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ms_storage_location">
+              <PropertyRef Name="location_id" />
+            </Principal>
+            <Dependent Role="tr_bpkb">
+              <PropertyRef Name="location_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TechnicalTesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ms_storage_location" EntityType="Self.ms_storage_location" />
+          <EntitySet Name="ms_user" EntityType="Self.ms_user" />
+          <EntitySet Name="tr_bpkb" EntityType="Self.tr_bpkb" />
+          <AssociationSet Name="FK__tr_bpkb__locatio__145C0A3F" Association="Self.FK__tr_bpkb__locatio__145C0A3F">
+            <End Role="ms_storage_location" EntitySet="ms_storage_location" />
+            <End Role="tr_bpkb" EntitySet="tr_bpkb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TechnicalTesModelStoreContainer" CdmEntityContainer="TechnicalTesEntities">
+          <EntitySetMapping Name="ms_storage_location">
+            <EntityTypeMapping TypeName="TechnicalTesModel.ms_storage_location">
+              <MappingFragment StoreEntitySet="ms_storage_location">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="location_name" ColumnName="location_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ms_user">
+            <EntityTypeMapping TypeName="TechnicalTesModel.ms_user">
+              <MappingFragment StoreEntitySet="ms_user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tr_bpkb">
+            <EntityTypeMapping TypeName="TechnicalTesModel.tr_bpkb">
+              <MappingFragment StoreEntitySet="tr_bpkb">
+                <ScalarProperty Name="agreement_number" ColumnName="agreement_number" />
+                <ScalarProperty Name="bpkb_no" ColumnName="bpkb_no" />
+                <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+                <ScalarProperty Name="bpkb_date" ColumnName="bpkb_date" />
+                <ScalarProperty Name="faktur_no" ColumnName="faktur_no" />
+                <ScalarProperty Name="faktur_date" ColumnName="faktur_date" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="police_no" ColumnName="police_no" />
+                <ScalarProperty Name="bpkb_date_in" ColumnName="bpkb_date_in" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="last_update_by" ColumnName="last_update_by" />
+                <ScalarProperty Name="last_update_on" ColumnName="last_update_on" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
